@@ -1,28 +1,9 @@
-# Copy as Markdown for Chrome & Firefox
+# attempt to parse Jira or Github issue from tab title
+## for Chrome & Firefox
 
-Do you often type Markdown code manually for a link or image, or even all tabs in a window, and feel tired? **Copy as Markdown** can help you!
+Do you often have to manually create a git branch name from an open issue in Jira or Github?
 
-## Download
-
-* Google Chrome: [Chrome Web Store - Copy as Markdown](https://chrome.google.com/webstore/detail/copy-as-markdown/fkeaekngjflipcockcnpobkpbbfbhmdn)
-* Firefox: [Copy as Markdown :: Add-ons for Firefox](https://addons.mozilla.org/firefox/addon/copy-as-markdown/)
-* Microsoft Edge: [Copy as Markdown - Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/copy-as-markdown/cbbdkefgbfifiljnnklfhnhcnlmpglpd)
-
-## Features
-
-**Copy as Markdown** is a browser extension helps you copy the following things as Markdown to your system clipboard:
-
-:ballot_box_with_check: Current Tab as Link<br>
-:ballot_box_with_check: A Link in the Page<br>
-:ballot_box_with_check: An Image in the Page<br>
-:ballot_box_with_check: An Image that is wrapped with a Link<br>
-:ballot_box_with_check: All Tabs as a List of Links<br>
-:ballot_box_with_check: Highlighted Tabs as a List of Links
-
-## Keyboard Shortcuts
-
-You can add keyboard shortuts for copying tab(s) as Markdown. By default, Copy as Markdown does not assign any keyboard shortcuts.
-
+based on the wonderful [Copy as Markdown](https://github.com/yorkxin/copy-as-markdown) browser extension.
 ### Firefox
 
 Please refer to this Firefox Help: https://support.mozilla.org/en-US/kb/manage-extension-shortcuts-firefox
@@ -33,11 +14,10 @@ The Keyboard Shortcuts of extensions can be found at `chrome://extensions/shortc
 
 ## Known Issues
 
-* [Chrome] When copying an image, the image code does not include the alternative text of that image. This is due to API restriction.
 
 ## Development
 
-Here is the forder structure. Platform-specific folder is used to resolve browser inconsistencies.
+Here is the folder structure. Platform-specific folder is used to resolve browser inconsistencies.
 
 ```
 src/               # Shared Source Code
@@ -58,7 +38,7 @@ firefox/           # Firefox Manifest V3 files
   background.html  # Loads ESModule
   ...
 compile.sh         # Copies src/**/* to <platform>/dist/
-```  
+```
 
 ### Install dependencies
 
@@ -88,7 +68,7 @@ To debug some behaviors such as Firefox restarts (for example, are context menus
 it is necessary to build an XPI package and install it on Firefox. Temporary Add-Ons won't be enough
 because they get uninstalled after Firefox quits.
 
-Firefox checks signature when installing XPI. To do so, 
+Firefox checks signature when installing XPI. To do so,
 
 1. Grab [API keys](https://addons.mozilla.org/en-US/developers/addon/api/key/) from Firefox Add-On
 2. Bump version in `manifest.json` and use something like `2.3.4b1` or `2.3.4rc1`
