@@ -114,6 +114,22 @@ export default class Markdown {
     } else {
       titleToUse = this.escapeLinkText(title);
     }
+
+    let issueCode = '';
+    let shortTitle = '';
+
+    [, issueCode, shortTitle] = titleToUse.match(/^\[(\w+-\w+)\]\s*(.+)(?: - JIRA)?$/i);
+
+    if (issueCode) { // JIRA issue
+      return `${issueCode}-${shortTitle.toLowerCase().replace(/ /g, '-')}`;
+    }
+
+    [, shortTitle, issueCode] = titleToUse.match(/^(.+)(?: . Issue #)?(\d+)$/i);
+
+    if (issueCode) { // Github issue
+      return `${issueCode}-${shortTitle.toLowerCase().replace(/ /g, '-')}`;
+    }
+
     return `[${titleToUse}](${url})`;
   }
 
